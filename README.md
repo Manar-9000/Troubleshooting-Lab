@@ -91,11 +91,11 @@ To restore access, we performed a manual intervention:
 **Step 2: Forced Password Update**
 Upon the next login attempt, the Windows 11 client recognized the "Must Change Password" flag. 
 
-<img src="ticket2_password_change.jpg" width="500" alt="Windows 11 forced password change prompt">
+<img src="ticket2_password_change.png" width="500" alt="Windows 11 forced password change prompt">
 
 **Step 3: Verification of Success**
 The user successfully defined a new complex password and was granted access to the desktop environment. 
 
-<img src="ticket2_new_password.jpg" width="500" alt="Successful login and desktop access">
+<img src="ticket2_new_password.png" width="500" alt="Successful login and desktop access">
 
 **Ticket Status: RESOLVED**
