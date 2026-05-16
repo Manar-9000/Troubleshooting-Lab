@@ -67,7 +67,7 @@ User `jdoe` reported being unable to log into their Windows 11 workstation. Init
 **Step 1: Client-Side Confirmation**
 Attempted login on the Windows 11 VM confirmed the account was locked at the Domain Controller level. The system refused all credential entries, even if correct, due to the security flag.
 
-<img src="ticket2_lockout_error.jpg" width="500" alt="Windows 11 Lockout Error Message">
+<img src="ticket2_lockout_error.png" width="500" alt="Windows 11 Lockout Error Message">
 
 **Step 2: Server-Side Verification**
 Accessed **Active Directory Users and Computers** on the Windows Server 2022 Domain Controller. We navigated to the `MANAR_Users` OU to inspect the account properties for John Doe.
