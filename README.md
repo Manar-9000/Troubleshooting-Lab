@@ -1,7 +1,7 @@
 # Troubleshooting-Lab
 A collection of real-world corporate IT support scenarios, enterprise diagnostics, and system administration tickets resolved within a virtualized Active Directory environment (`manar.local`)
 
-## IT Help Desk Simulation: Ticket #1 - DNS Misconfiguration & Active Directory Disconnect
+## Ticket #1 IT Help Desk Simulation: DNS Misconfiguration & Active Directory Disconnect
 
 ### **Problem Description**
 A help desk ticket was submitted indicating the user could no longer access the corporate network share `\\manar.local\Company_Data`. Standard connectivity tests (pinging by IP) worked, but connecting to the share by domain name was failing with a "network path not found" error.
@@ -51,3 +51,51 @@ The final step was verifying access to the network resources.
 With the domain name resolving correctly, navigating to `\\manar.local\Company_Data` was instantaneous and successful, revealing the contents of the share (currently an empty test folder).
 
 **Ticket Status: Resolved.**
+
+
+---
+
+## Ticket #2: Account Lockout & Security Policy Remediation
+
+### **Problem Statement**
+User `jdoe` reported being unable to log into their Windows 11 workstation. Initial investigation confirmed the user was receiving an official Active Directory lockout notification due to multiple failed login attempts.
+
+---
+
+### **Investigation & Diagnosis**
+
+**Step 1: Client-Side Confirmation**
+Attempted login on the Windows 11 VM confirmed the account was locked at the Domain Controller level. The system refused all credential entries, even if correct, due to the security flag.
+
+<img src="images/ticket2_lockout_error.jpg" width="500" alt="Windows 11 Lockout Error Message">
+
+**Step 2: Server-Side Verification**
+Accessed **Active Directory Users and Computers** on the Windows Server 2022 Domain Controller. We navigated to the `MANAR_Users` OU to inspect the account properties for John Doe.
+
+<img src="images/ticket2_ad_lockout.png" width="550" alt="ADUC showing user lockout status message">
+
+The "Reset Password" dialog explicitly confirmed the status: **"Account Lockout Status on this Domain Controller: Locked out"**.
+
+---
+
+### **Resolution Steps**
+
+**Step 1: Administrative Unlock & Reset**
+To restore access, we performed a manual intervention:
+1. Triggered the **Reset Password** utility for the affected user.
+2. Selected the **"Unlock the user's account"** checkbox to clear the Active Directory lockout bit.
+3. Enabled **"User must change password at next logon"** to maintain security integrity.
+
+<img src="images/ticket2_unlock_action.png" width="550" alt="Administrative password reset and unlock action">
+
+**Step 2: Forced Password Update**
+Upon the next login attempt, the Windows 11 client recognized the "Must Change Password" flag. 
+
+<img src="images/ticket2_password_change.jpg" width="500" alt="Windows 11 forced password change prompt">
+
+**Step 3: Verification of Success**
+The user successfully defined a new complex password and was granted access to the desktop environment. 
+
+<img src="images/ticket2_new_password.jpg" width="500" alt="Successful login and desktop access">
+
+**Ticket Status: RESOLVED**
