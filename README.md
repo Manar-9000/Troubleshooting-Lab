@@ -67,12 +67,12 @@ User `jdoe` reported being unable to log into their Windows 11 workstation. Init
 **Step 1: Client-Side Confirmation**
 Attempted login on the Windows 11 VM confirmed the account was locked at the Domain Controller level. The system refused all credential entries, even if correct, due to the security flag.
 
-<img src="images/ticket2_lockout_error.jpg" width="500" alt="Windows 11 Lockout Error Message">
+<img src="ticket2_lockout_error.jpg" width="500" alt="Windows 11 Lockout Error Message">
 
 **Step 2: Server-Side Verification**
 Accessed **Active Directory Users and Computers** on the Windows Server 2022 Domain Controller. We navigated to the `MANAR_Users` OU to inspect the account properties for John Doe.
 
-<img src="images/ticket2_ad_lockout.png" width="550" alt="ADUC showing user lockout status message">
+<img src="ticket2_ad_lockout.png" width="550" alt="ADUC showing user lockout status message">
 
 The "Reset Password" dialog explicitly confirmed the status: **"Account Lockout Status on this Domain Controller: Locked out"**.
 
@@ -86,16 +86,16 @@ To restore access, we performed a manual intervention:
 2. Selected the **"Unlock the user's account"** checkbox to clear the Active Directory lockout bit.
 3. Enabled **"User must change password at next logon"** to maintain security integrity.
 
-<img src="images/ticket2_unlock_action.png" width="550" alt="Administrative password reset and unlock action">
+<img src="ticket2_unlock_action.png" width="550" alt="Administrative password reset and unlock action">
 
 **Step 2: Forced Password Update**
 Upon the next login attempt, the Windows 11 client recognized the "Must Change Password" flag. 
 
-<img src="images/ticket2_password_change.jpg" width="500" alt="Windows 11 forced password change prompt">
+<img src="ticket2_password_change.jpg" width="500" alt="Windows 11 forced password change prompt">
 
 **Step 3: Verification of Success**
 The user successfully defined a new complex password and was granted access to the desktop environment. 
 
-<img src="images/ticket2_new_password.jpg" width="500" alt="Successful login and desktop access">
+<img src="ticket2_new_password.jpg" width="500" alt="Successful login and desktop access">
 
 **Ticket Status: RESOLVED**
